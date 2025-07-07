@@ -9,20 +9,28 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Setup JDK
+
+    - name: Set up JDK
       uses: actions/setup-java@v3
       with:
         distribution: 'temurin'
         java-version: '17'
-    - name: Setup Android SDK
+
+    - name: Set up Android SDK
       uses: android-actions/setup-android@v2
       with:
         api-level: 30
-        install-build-tools: true
+        build-tools-version: 30.0.3
+        ndk: true
+
+    - name: Grant execute permission to Gradle
+      run: chmod +x ./gradlew
+
     - name: Build APK
       run: ./gradlew assembleDebug
+
     - name: Upload APK
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: MiniBrowser-debug.apk
         path: app/build/outputs/apk/debug/app-debug.apk

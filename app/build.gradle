@@ -1,0 +1,14 @@
+apply plugin: 'com.android.application'
+android {
+  compileSdkVersion 30
+  defaultConfig {
+    applicationId "com.example.minibrowser"
+    minSdkVersion 14
+    targetSdkVersion 30
+    versionCode 1
+    versionName "1.0"
+    externalNativeBuild { cmake { cppFlags "-std=c++11 -O2" } }
+  }
+  externalNativeBuild { cmake { path "CMakeLists.txt" } }
+}
+dependencies { implementation 'androidx.appcompat:appcompat:1.2.0' }

@@ -1,14 +1,29 @@
 apply plugin: 'com.android.application'
+
 android {
-  compileSdkVersion 30
+  compileSdkVersion 33 // ✅ Update from 30 to 33
+
   defaultConfig {
     applicationId "com.example.minibrowser"
-    minSdkVersion 14
-    targetSdkVersion 30
+    minSdkVersion 21         // ✅ Raise from 14 to 21 (minimum for androidx.appcompat 1.6.1)
+    targetSdkVersion 33      // ✅ Update from 30 to 33
     versionCode 1
     versionName "1.0"
-    externalNativeBuild { cmake { cppFlags "-std=c++11 -O2" } }
+
+    externalNativeBuild {
+      cmake {
+        cppFlags "-std=c++11 -O2"
+      }
+    }
   }
-  externalNativeBuild { cmake { path "CMakeLists.txt" } }
+
+  externalNativeBuild {
+    cmake {
+      path "CMakeLists.txt"
+    }
+  }
 }
-dependencies { implementation 'androidx.appcompat:appcompat:1.6.1' }
+
+dependencies {
+  implementation 'androidx.appcompat:appcompat:1.6.1'
+}

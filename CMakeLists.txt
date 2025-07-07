@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.10)
+project("mini")
+add_library(mini SHARED src/main/cpp/mini.cpp)
+find_library(log-lib log)
+target_link_libraries(mini ${log-lib})
